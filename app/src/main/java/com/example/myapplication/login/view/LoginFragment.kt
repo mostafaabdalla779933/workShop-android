@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.example.myapplication.News.NewsFragment
 import com.example.myapplication.R
+import com.example.myapplication.Registration.view.RegistrationFragment
 import com.example.myapplication.databinding.FragmentLoginBinding
 import com.example.myapplication.login.LocalDataSource
 import com.example.myapplication.login.LoginRepo
@@ -31,10 +34,12 @@ class LoginFragment : Fragment() {
 
             if(viewModel.validateUser(binding.userName.text.toString(),binding.userPass.text.toString())){
 
-                Log.i(TAG, "onCreate: success")
+                Toast.makeText(requireContext(),"invaild password",Toast.LENGTH_SHORT)
             }else{
 
-                Log.i(TAG, "onCreate: failed")
+                Log.i(TAG, "onCreate: ")
+
+                parentFragmentManager.beginTransaction().replace(R.id.fragment_container_view,NewsFragment()).commit()
             }
 
 
@@ -43,9 +48,7 @@ class LoginFragment : Fragment() {
 
         binding.btnsignin.setOnClickListener(View.OnClickListener {
 
-
-
-            parentFragmentManager.beginTransaction().replace(R.id.fragment_container_view,LoginFragment()).commit()
+            parentFragmentManager.beginTransaction().replace(R.id.fragment_container_view,RegistrationFragment()).commit()
 
         })
 

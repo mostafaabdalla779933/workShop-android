@@ -12,7 +12,7 @@ import androidx.room.Query
         fun getAllUsers(): List<UserEntity>?
 
         @Insert
-        fun insertUser(userEntity: UserEntity?)
+        fun insertUser(userEntity: UserEntity?):Long
 
         @Delete
         fun deleteUser(userEntity: UserEntity?)

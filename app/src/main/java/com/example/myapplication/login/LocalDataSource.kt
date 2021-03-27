@@ -2,6 +2,7 @@ package com.example.myapplication.login
 
 import com.example.myapplication.MyApplication
 import com.example.myapplication.db.RoomAppDb
+import com.example.myapplication.db.UserEntity
 import com.example.myapplication.model.ArticlesItem
 import com.example.myapplication.model.Response
 
