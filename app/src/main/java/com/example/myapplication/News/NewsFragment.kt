@@ -15,7 +15,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+
 import com.example.myapplication.databinding.NewsFragmentBinding
+
+import com.facebook.shimmer.ShimmerFrameLayout
+
 
 class NewsFragment : Fragment() {
 
@@ -25,15 +29,19 @@ class NewsFragment : Fragment() {
 
     private lateinit var viewModel: NewsViewModel
     private lateinit var recyclerView: RecyclerView
+
     lateinit var binding: NewsFragmentBinding
     val TAG="main"
-    lateinit var recyclerAdapter: NewsAdapter
+
+
+    private lateinit var recyclerAdapter: NewsAdapter
+    private lateinit var shimmer: ShimmerFrameLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = NewsViewModel()
+       // viewModel = NewsViewModel()
         binding= NewsFragmentBinding.inflate(layoutInflater, container, false)
 
         val root = inflater.inflate(R.layout.news_fragment, container, false)
@@ -43,49 +51,18 @@ class NewsFragment : Fragment() {
             recyclerAdapter.setList(ArrayList(it.articles))
         })
         recyclerView = root.findViewById(R.id.news_recycler_view)
+        shimmer = root.findViewById(R.id.shimmerLayout)
+        shimmer.startShimmer()
         recyclerView.setHasFixedSize(true)
         val recyclerViewManager = LinearLayoutManager(root.context)
         recyclerViewManager.orientation = RecyclerView.VERTICAL
         recyclerView.layoutManager = recyclerViewManager
 
+
         recyclerView.adapter
 
         viewModel.fetchNews("tesla")
 
-        binding.searchBar.setOnClickListener(View.OnClickListener {
-
-            Log.i(TAG, "onCreateView: ")
-        })
-
-
-        binding.searchBar.addTextChangedListener(object : TextWatcher{
-            override fun afterTextChanged(s: Editable?) {
-                TODO("Not yet implemented")
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                Log.i("main", s.toString())
-            }
-        })
-
-//        binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(txt: String?): Boolean {
-//
-//                Log.i(TAG, "onQueryTextSubmit: "+txt)
-//
-//                return false
-//            }
-//            override fun onQueryTextChange(txt: String?): Boolean {
-//
-//                Log.i(TAG, "onQueryTextChange: "+txt)
-//
-//                return false
-//            }
-//        })
 
 
 
@@ -94,8 +71,11 @@ class NewsFragment : Fragment() {
 
 
 
+       // recyclerAdapter = NewsAdapter(arrayListOf())
 
-        recyclerAdapter = NewsAdapter(arrayListOf())
+        //viewModel = ViewModelProvider(this, RegistrationViewModelFactory(RegistrationRepo(LocalDataSource()))).get(RegistrationViewModel::class.java)
+        recyclerAdapter = NewsAdapter(viewModel,arrayListOf())
+
         recyclerView.adapter = recyclerAdapter
 
 
@@ -104,10 +84,17 @@ class NewsFragment : Fragment() {
     }
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this, NewsViewModelFactory(FavouriteRepo(FavouriteDataSource()))).get(NewsViewModel::class.java)
+        //viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
+        viewModel.fetchNews("tesla")
+        viewModel.newsData.observe(viewLifecycleOwner, Observer {
+            recyclerAdapter.setList(ArrayList(it.articles))
+            shimmer.stopShimmer()
+        })
 
     }
 
