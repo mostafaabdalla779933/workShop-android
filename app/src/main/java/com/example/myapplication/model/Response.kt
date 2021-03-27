@@ -1,6 +1,6 @@
 package com.example.myapplication.model
 
-import com.example.myapplication.ArticlesItem
+
 import com.google.gson.annotations.SerializedName
 
 data class Response(
