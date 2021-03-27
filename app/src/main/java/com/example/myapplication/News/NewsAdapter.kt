@@ -5,9 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
+
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import com.example.myapplication.db.FavouriteEntity
 import com.example.myapplication.model.ArticlesItem
 
 
@@ -36,7 +37,7 @@ class NewsAdapter(
             viewHolder.body.text = news[position]?.description
         }
         viewHolder.fav.setOnClickListener{
-             viewModel.insertFavourite()
+        //     viewModel.insertFavourite(FavouriteEntity(0,viewModel.get))
         }
 
     }
