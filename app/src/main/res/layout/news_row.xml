@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
     app:cardBackgroundColor="#BDB8B8"
     app:cardCornerRadius="5dp"
@@ -24,8 +24,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:paddingBottom="100dp"
             android:textSize="20sp"
             tools:text="articletitle" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="31dp" />
 
         <TextView
             android:id="@+id/article_body"

@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.myapplication.News.NewsFragment
 
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.login.view.LoginFragment
@@ -18,7 +19,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view,LoginFragment()).commit()
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view,
+            NewsFragment()
+        ).commit()
 
     }
 }
