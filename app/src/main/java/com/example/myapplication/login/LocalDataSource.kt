@@ -41,5 +41,9 @@ class LocalDataSource:LocalDataSourceInterface {
         TODO("Not yet implemented")
     }
 
+    override suspend fun getEmails(): List<String>? {
+        return userDao?.getAllUsers()
+    }
+
 
 }

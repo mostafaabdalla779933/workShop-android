@@ -43,4 +43,8 @@ class NewsViewModel(val favouriteRepo: FavouriteRepo, private val localDataSourc
     fun deleteFavourite(fav: FavouriteEntity){
          favouriteRepo.deleteFavourite(fav)
     }
+    fun getUserId():String{
+        return favouriteRepo.getUserId()
+    }
+
 }

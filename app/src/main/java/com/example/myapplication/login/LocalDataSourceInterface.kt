@@ -18,4 +18,6 @@ interface LocalDataSourceInterface {
     suspend fun addFavorite(article: ArticlesItem)
 
     suspend fun deleteFavorite(article: ArticlesItem)
+
+    suspend fun getEmails():List<String>?
 }
