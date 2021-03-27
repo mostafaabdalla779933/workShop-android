@@ -2,6 +2,7 @@ package com.example.myapplication.News
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.myapplication.db.FavouriteEntity
 import com.example.myapplication.login.LocalDataSource
 import com.example.myapplication.model.Response
 import com.example.myapplication.repo.NewsRepo
@@ -11,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-class NewsViewModel : ViewModel() {
+class NewsViewModel(val favouriteRepo: FavouriteRepo) : ViewModel() {
 
     val newsRepo: NewsRepo = NewsRepo(RemoteDataSourceImpl(), LocalDataSource())
     val newsData: MutableLiveData<Response> = MutableLiveData()
@@ -21,5 +22,16 @@ class NewsViewModel : ViewModel() {
             val response = newsRepo.getFreshNews(topic)
             newsData.postValue(response)
         }
+    }
+    fun getUserFavourites(useremail: String): FavouriteEntity? {
+        return favouriteRepo.getUserFavourites(useremail)
+    }
+
+    fun insertFavourite(fav: FavouriteEntity): Boolean? {
+        return favouriteRepo.insertFavourite(fav)
+    }
+
+    fun deleteFavourite(fav: FavouriteEntity): Boolean? {
+        return favouriteRepo.deleteFavourite(fav)
     }
 }

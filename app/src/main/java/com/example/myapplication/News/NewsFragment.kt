@@ -10,6 +10,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import com.example.myapplication.Registration.LocalDataSource
+import com.example.myapplication.Registration.RegistrationRepo
+import com.example.myapplication.Registration.viewmodel.RegistrationViewModel
+import com.example.myapplication.Registration.viewmodel.RegistrationViewModelFactory
 
 class NewsFragment : Fragment() {
 
@@ -30,7 +34,8 @@ class NewsFragment : Fragment() {
         val recyclerViewManager = LinearLayoutManager(root.context)
         recyclerViewManager.orientation = RecyclerView.VERTICAL
         recyclerView.layoutManager = recyclerViewManager
-        recyclerAdapter = NewsAdapter(arrayListOf())
+        //viewModel = ViewModelProvider(this, RegistrationViewModelFactory(RegistrationRepo(LocalDataSource()))).get(RegistrationViewModel::class.java)
+        recyclerAdapter = NewsAdapter(viewModel,arrayListOf())
         recyclerView.adapter = recyclerAdapter
 
         return root
@@ -39,7 +44,8 @@ class NewsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
+        viewModel = ViewModelProvider(this, NewsViewModelFactory(FavouriteRepo(FavouriteDataSource()))).get(NewsViewModel::class.java)
+        //viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
         viewModel.fetchNews("tesla")
         viewModel.newsData.observe(viewLifecycleOwner, Observer {
             recyclerAdapter.setList(ArrayList(it.articles))

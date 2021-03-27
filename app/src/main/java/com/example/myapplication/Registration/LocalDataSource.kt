@@ -4,13 +4,12 @@ import com.example.myapplication.MyApplication
 import com.example.myapplication.db.RoomAppDb
 import com.example.myapplication.db.UserEntity
 
-class LocalDataSource :
-    LocalDataSourceInterface {
-    val userDao= RoomAppDb.getAppDatabase(MyApplication.getContext())?.DAO()
+class LocalDataSource : LocalDataSourceInterface {
+    val userDao = RoomAppDb.getAppDatabase(MyApplication.getContext())?.DAO()
 
-    override fun insertUser(user: UserEntity):Boolean? {
-       return userDao?.insertUser(user)?.let {
-           it>0
-       }
+    override fun insertUser(user: UserEntity): Boolean? {
+        return userDao?.insertUser(user)?.let {
+            it > 0
+        }
     }
 }

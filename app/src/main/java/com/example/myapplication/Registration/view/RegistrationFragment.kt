@@ -24,10 +24,7 @@ class RegistrationFragment : Fragment() {
     ): View? {
         binding = FragmentSigupBinding.inflate(layoutInflater)
 
-        viewModel = ViewModelProvider(
-            this,
-            RegistrationViewModelFactory(RegistrationRepo(LocalDataSource()))
-        ).get(RegistrationViewModel::class.java)
+        viewModel = ViewModelProvider(this, RegistrationViewModelFactory(RegistrationRepo(LocalDataSource()))).get(RegistrationViewModel::class.java)
         binding.btnsignin.setOnClickListener(View.OnClickListener {
             val myemail = binding.userName.text.toString()
             val mypassword = binding.userPass.text.toString()
