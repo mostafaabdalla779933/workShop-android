@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.Registration.view.RegistrationFragment
@@ -29,14 +30,24 @@ class LoginFragment : Fragment() {
         viewModel= ViewModelProvider(this, LoginViewModelFactory(LoginRepo(LocalDataSource()))).get(LoginViewModel::class.java)
 
         binding.btnlogin.setOnClickListener(View.OnClickListener {
-
-            if(viewModel.validateUser(binding.userName.text.toString(),binding.userPass.text.toString())){
-
-                Log.i(TAG, "onCreate: success")
-            }else{
-
-                Log.i(TAG, "onCreate: failed")
+            val username:String?=binding.userName.text.toString()
+            val password:String?=binding.userPass.text.toString()
+            if(username.isNullOrEmpty()){
+                Toast.makeText(requireActivity(),"PLease fill Username Field",Toast.LENGTH_SHORT).show()
             }
+            else{
+                if (password.isNullOrEmpty()){
+                    Toast.makeText(requireActivity(),"PLease fill Password Field",Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    if(viewModel.validateUser(username,password)){
+                        Toast.makeText(requireActivity(),"Login Successeded",Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(requireActivity(),"Invalid Username/Password",Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
 
 
         })
