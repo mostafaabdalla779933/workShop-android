@@ -20,8 +20,12 @@ import com.example.myapplication.db.UserEntity
 class RegistrationFragment : Fragment() {
     lateinit var viewModel: RegistrationViewModel
     lateinit var binding: FragmentSigupBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = FragmentSigupBinding.inflate(layoutInflater)
 
         viewModel = ViewModelProvider(
@@ -38,21 +42,13 @@ class RegistrationFragment : Fragment() {
                         .show()
                 }
                 else{
-                    Toast.makeText(requireActivity(), "Inserted Correctly", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireActivity(), "Inserted incorrectly", Toast.LENGTH_SHORT)
                         .show()
                 }
             }
 
         })
-
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sigup, container, false)
+        return  binding.root
     }
 
     companion object {
