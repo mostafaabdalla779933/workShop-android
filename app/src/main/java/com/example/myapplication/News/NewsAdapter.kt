@@ -37,7 +37,7 @@ class NewsAdapter(
             viewHolder.body.text = news[position]?.description
         }
         viewHolder.fav.setOnClickListener{
-             viewModel.insertFavourite(FavouriteEntity(0,viewModel.getUserId()))
+             viewModel.insertFavourite()
         }
 
     }

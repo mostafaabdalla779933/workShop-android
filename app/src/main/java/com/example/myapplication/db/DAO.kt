@@ -10,8 +10,15 @@ interface DAO {
     @Query("SELECT * FROM Users ")
     fun getAllUsers(): List<UserEntity>?
 
+<<<<<<< HEAD
+    @Dao
+    interface DAO {
+        @Query("SELECT Email FROM Users ")
+        fun getAllUsers(): List<String>?
+=======
     @Insert
     fun insertUser(userEntity: UserEntity?): Long
+>>>>>>> 76219d1970a38aa7ad09a2c6ce9ef7392d793d88
 
     @Delete
     fun deleteUser(userEntity: UserEntity?)
