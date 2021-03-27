@@ -2,6 +2,7 @@ package com.example.myapplication.login
 
 import com.example.myapplication.MyApplication
 import com.example.myapplication.db.RoomAppDb
+import com.example.myapplication.db.UserEntity
 
 class LocalDataSource:LocalDataSourceInterface {
 
@@ -18,6 +19,8 @@ class LocalDataSource:LocalDataSourceInterface {
         }
         return false
     }
+
+
 
 
 }
