@@ -2,6 +2,8 @@ package com.example.myapplication.login
 
 import com.example.myapplication.MyApplication
 import com.example.myapplication.db.RoomAppDb
+import com.example.myapplication.model.ArticlesItem
+import com.example.myapplication.model.Response
 
 class LocalDataSource:LocalDataSourceInterface {
 
@@ -17,6 +19,26 @@ class LocalDataSource:LocalDataSourceInterface {
             return true
         }
         return false
+    }
+
+    override suspend fun cacheNews(response: Response) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getNewsFromDB(): Response {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getFavorites(userID: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun addFavorite(article: ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun deleteFavorite(article: ArticlesItem) {
+        TODO("Not yet implemented")
     }
 
 
