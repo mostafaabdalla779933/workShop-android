@@ -14,6 +14,7 @@ import com.example.myapplication.Registration.LocalDataSource
 import com.example.myapplication.Registration.RegistrationRepo
 import com.example.myapplication.Registration.viewmodel.RegistrationViewModel
 import com.example.myapplication.Registration.viewmodel.RegistrationViewModelFactory
+import com.facebook.shimmer.ShimmerFrameLayout
 
 class NewsFragment : Fragment() {
 
@@ -23,13 +24,16 @@ class NewsFragment : Fragment() {
 
     private lateinit var viewModel: NewsViewModel
     private lateinit var recyclerView: RecyclerView
-    lateinit var recyclerAdapter: NewsAdapter
+    private lateinit var recyclerAdapter: NewsAdapter
+    private lateinit var shimmer: ShimmerFrameLayout
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.news_fragment, container, false)
         recyclerView = root.findViewById(R.id.news_recycler_view)
+        shimmer = root.findViewById(R.id.shimmerLayout)
+        shimmer.startShimmer()
         recyclerView.setHasFixedSize(true)
         val recyclerViewManager = LinearLayoutManager(root.context)
         recyclerViewManager.orientation = RecyclerView.VERTICAL
@@ -49,6 +53,7 @@ class NewsFragment : Fragment() {
         viewModel.fetchNews("tesla")
         viewModel.newsData.observe(viewLifecycleOwner, Observer {
             recyclerAdapter.setList(ArrayList(it.articles))
+            shimmer.stopShimmer()
         })
     }
 
