@@ -19,6 +19,7 @@ class NewsFragment : Fragment() {
 
     private lateinit var viewModel: NewsViewModel
     private lateinit var recyclerView: RecyclerView
+    lateinit var recyclerAdapter: NewsAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,9 +30,9 @@ class NewsFragment : Fragment() {
         val recyclerViewManager = LinearLayoutManager(root.context)
         recyclerViewManager.orientation = RecyclerView.VERTICAL
         recyclerView.layoutManager = recyclerViewManager
-        recyclerView.adapter
-        viewModel = NewsViewModel()
-        viewModel.fetchNews("tesla")
+        recyclerAdapter = NewsAdapter(arrayListOf())
+        recyclerView.adapter = recyclerAdapter
+
         return root
 
     }
@@ -39,8 +40,9 @@ class NewsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
+        viewModel.fetchNews("tesla")
         viewModel.newsData.observe(viewLifecycleOwner, Observer {
-            recyclerView.adapter = NewsAdapter(it.articles)
+            recyclerAdapter.setList(ArrayList(it.articles))
         })
     }
 

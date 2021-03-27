@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="90dp"
             tools:text="boodyobdoyboaydfoasdfklsahfklasjeflsaekjfslaekfj"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -42,8 +42,9 @@
 
         <ImageButton
             android:id="@+id/add_favorite"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:src="@drawable/heart"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginEnd="20dp"
