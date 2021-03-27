@@ -1,11 +1,11 @@
-package com.example.myapplication.login
+package com.example.myapplication.repo
 
 import com.example.myapplication.model.ArticlesItem
 import com.example.myapplication.model.Response
 
-interface LocalDataSourceInterface {
+interface NewsRepoInterface {
 
-    fun validateUser(userName:String,password:String):Boolean
+    suspend fun getFreshNews(topic: String): Response
 
     suspend fun cacheNews(response: Response)
 
@@ -16,4 +16,5 @@ interface LocalDataSourceInterface {
     suspend fun addFavorite(article: ArticlesItem)
 
     suspend fun deleteFavorite(article: ArticlesItem)
+
 }
