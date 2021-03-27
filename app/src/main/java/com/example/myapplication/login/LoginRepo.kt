@@ -1,10 +1,10 @@
 package com.example.myapplication.login
 
-class LoginRepo(var localDataSourceInterface: LocalDataSourceInterface){
+class LoginRepo(var localDataSourceInterface: LocalDataSourceInterface) : LoginRepoInterface {
 
 
 
-    fun validateUser(userName: String, pass: String):Boolean {
+    override fun validateUser(userName: String, pass: String):Boolean {
       return  localDataSourceInterface.validateUser(userName,pass)
     }
 

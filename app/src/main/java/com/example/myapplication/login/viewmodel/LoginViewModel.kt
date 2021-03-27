@@ -1,9 +1,10 @@
 package com.example.myapplication.login.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.myapplication.login.LoginRepo
 
-class LoginViewModel(val loginRepo: LoginRepo):ViewModel() {
+import com.example.myapplication.login.LoginRepoInterface
+
+class LoginViewModel(val loginRepo: LoginRepoInterface):ViewModel() {
 
 
 
