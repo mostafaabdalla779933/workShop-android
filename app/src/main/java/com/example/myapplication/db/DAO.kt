@@ -19,15 +19,15 @@ interface DAO {
     @Query("SELECT * FROM Users where Email= :email")
     fun getUser(email: String): UserEntity
 
-    @Query("SELECT * FROM news ")
-    fun getAllNews(): List<NewsEntity>?
+    /*@Query("SELECT * FROM news ")
+    fun getAllNews(): List<NewsEntity>?*/
 
     @Query("SELECT * FROM favourite where userId= :useremail")
     fun getUserFavourites(useremail: String): FavouriteEntity?
 
     @Insert
-    fun insertFavourite(fav: FavouriteEntity): Long?
+    fun insertFavourite(fav: FavouriteEntity): Long
 
     @Delete
-    fun deleteFavourite(fav: FavouriteEntity): Long?
+    fun deleteFavourite(fav: FavouriteEntity):Int
 }

@@ -8,6 +8,6 @@ import com.example.myapplication.model.ArticlesItem
 
 @Entity(tableName = "favourite")
 data class FavouriteEntity (
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val id : Int = 0,
+    @PrimaryKey (autoGenerate = true)val articleId:Int ,
     @ColumnInfo val userId:String
 )

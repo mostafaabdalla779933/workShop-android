@@ -34,4 +34,8 @@ class NewsViewModel(val favouriteRepo: FavouriteRepo) : ViewModel() {
     fun deleteFavourite(fav: FavouriteEntity): Boolean? {
         return favouriteRepo.deleteFavourite(fav)
     }
+    fun getUserId():String{
+        return favouriteRepo.getUserId()
+    }
+
 }

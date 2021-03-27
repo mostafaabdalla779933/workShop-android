@@ -20,8 +20,7 @@ class MainActivity : AppCompatActivity() {
 
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view,
-            NewsFragment()
-        ).commit()
+            NewsFragment()).commit()
 
     }
 }

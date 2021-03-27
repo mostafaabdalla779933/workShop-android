@@ -8,11 +8,11 @@ class LoginViewModel(val loginRepo: LoginRepo):ViewModel() {
 
 
     fun validateUser(user:String,pass:String):Boolean{
-
-
        return loginRepo.validateUser(user,pass)
 
     }
 
-
+    fun SetUserId(useremail: String){
+        return loginRepo.SetUserId(useremail)
+    }
 }
