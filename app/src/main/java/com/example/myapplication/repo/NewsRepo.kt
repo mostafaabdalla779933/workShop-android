@@ -12,17 +12,17 @@ class NewsRepo(
     override suspend fun getFreshNews(topic: String): Response =
         remoteDataSourceInterface.getNews(topic)
 
-    override suspend fun cacheNews(response: Response) {
+    override suspend fun cacheNews(response: Response) =
         localDataSourceInterface.cacheNews(response)
-    }
 
-    override suspend fun getNewsFromDB(): Response {
-        return localDataSourceInterface.getNewsFromDB()
-    }
 
-    override suspend fun getFavorites(userID: Int) {
-        return localDataSourceInterface.getFavorites(userID)
-    }
+    override suspend fun getNewsFromDB(): Response =
+        localDataSourceInterface.getNewsFromDB()
+
+
+    override suspend fun getFavorites(userID: Int): List<Response> =
+        localDataSourceInterface.getFavorites(userID)
+
 
     override suspend fun addFavorite(article: ArticlesItem) {
         localDataSourceInterface.addFavorite(article)

@@ -29,7 +29,7 @@ class LocalDataSource:LocalDataSourceInterface {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getFavorites(userID: Int) {
+    override suspend fun getFavorites(userID: Int): List<Response> {
         TODO("Not yet implemented")
     }
 

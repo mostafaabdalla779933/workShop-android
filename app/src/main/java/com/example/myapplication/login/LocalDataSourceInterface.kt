@@ -11,7 +11,7 @@ interface LocalDataSourceInterface {
 
     suspend fun getNewsFromDB(): Response
 
-    suspend fun getFavorites(userID: Int)
+    suspend fun getFavorites(userID: Int): List<Response>
 
     suspend fun addFavorite(article: ArticlesItem)
 
