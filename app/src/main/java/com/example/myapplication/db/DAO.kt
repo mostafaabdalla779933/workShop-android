@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.myapplication.model.ArticlesItem
 
 @Dao
 interface DAO {
@@ -20,7 +21,7 @@ interface DAO {
     fun getUser(email: String): UserEntity
 
     @Query("SELECT * FROM news ")
-    fun getAllNews(): List<NewsEntity>?
+    fun getAllNews(): List<ArticlesItem>?
 
     @Query("SELECT * FROM favourite where userId= :useremail")
     fun getUserFavourites(useremail: String): FavouriteEntity?
@@ -29,5 +30,9 @@ interface DAO {
     fun insertFavourite(fav: FavouriteEntity): Long?
 
     @Delete
-    fun deleteFavourite(fav: FavouriteEntity): Long?
+    fun deleteFavourite(fav: FavouriteEntity)
+
+    @Insert
+    fun insertArticles(news: List<ArticlesItem?>)
+
 }

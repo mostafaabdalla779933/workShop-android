@@ -1,8 +1,6 @@
 package com.example.myapplication.News
 
-import com.example.myapplication.Registration.LocalDataSourceInterface
 import com.example.myapplication.db.FavouriteEntity
-import com.example.myapplication.db.UserEntity
 
 class FavouriteRepo(var favouriteLocalDataSourceInterface: FavouriteLocalDataSourceInterface){
 
@@ -14,8 +12,8 @@ class FavouriteRepo(var favouriteLocalDataSourceInterface: FavouriteLocalDataSou
         return favouriteLocalDataSourceInterface.insertFavourite(fav)
     }
 
-     fun deleteFavourite(fav: FavouriteEntity): Boolean? {
-        return favouriteLocalDataSourceInterface.deleteFavourite(fav)
+     fun deleteFavourite(fav: FavouriteEntity) {
+         favouriteLocalDataSourceInterface.deleteFavourite(fav)
     }
 
 

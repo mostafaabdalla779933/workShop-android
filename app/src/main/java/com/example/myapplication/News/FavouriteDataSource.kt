@@ -16,10 +16,8 @@ class FavouriteDataSource:FavouriteLocalDataSourceInterface {
        }
     }
 
-    override fun deleteFavourite(fav: FavouriteEntity): Boolean? {
-            return favouriteDao?.deleteFavourite(fav)?.let {
-                it>0
-            }
+    override fun deleteFavourite(fav: FavouriteEntity): Unit {
+        favouriteDao?.deleteFavourite(fav)
     }
 
 }

@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import com.example.myapplication.db.FavouriteEntity
 import com.example.myapplication.model.ArticlesItem
 
 
@@ -35,9 +36,10 @@ class NewsAdapter(
             viewHolder.title.text = news[position]?.title
             viewHolder.body.text = news[position]?.description
         }
-        viewHolder.fav.setOnClickListener{
-             viewModel.insertFavourite()
-        }
+//        viewHolder.fav.setOnClickListener{
+//            val userID = u
+//             viewModel.insertFavourite(FavouriteEntity())
+//        }
 
     }
 

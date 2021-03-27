@@ -7,5 +7,5 @@ interface FavouriteLocalDataSourceInterface {
 
     fun insertFavourite(fav: FavouriteEntity): Boolean?
 
-    fun deleteFavourite(fav: FavouriteEntity): Boolean?
+    fun deleteFavourite(fav: FavouriteEntity): Unit
 }

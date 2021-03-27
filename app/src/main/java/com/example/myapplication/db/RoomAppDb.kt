@@ -4,8 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.myapplication.model.ArticlesItem
 
-@Database(entities = [UserEntity::class], version = 2)
+@Database(entities = [UserEntity::class, ArticlesItem::class, FavouriteEntity::class], version = 2)
 abstract class RoomAppDb: RoomDatabase() {
 
 
