@@ -18,8 +18,8 @@ class NewsViewModel : ViewModel() {
 
     fun fetchNews(topic: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            val response = async { newsRepo.getFreshNews(topic) }
-            newsData.postValue(response.await())
+            val response = newsRepo.getFreshNews(topic)
+            newsData.postValue(response)
         }
     }
 }

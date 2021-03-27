@@ -7,10 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.model.ArticlesItem
-import com.example.myapplication.model.Response
 
 
-class NewsAdapter(private val news: List<ArticlesItem?>?) :
+class NewsAdapter(private val news: ArrayList<ArticlesItem?>?) :
     RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
 
@@ -35,6 +34,12 @@ class NewsAdapter(private val news: List<ArticlesItem?>?) :
 
     }
 
-    override fun getItemCount() = news!!.size
+    fun setList(list: ArrayList<ArticlesItem?>){
+        news?.clear()
+        news?.addAll(list)
+        notifyDataSetChanged()
+    }
+
+    override fun getItemCount() = news?.size ?: 0
 
 }
