@@ -12,6 +12,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class NewsViewModel : ViewModel() {
+
     val newsRepo: NewsRepo = NewsRepo(RemoteDataSourceImpl(), LocalDataSource())
     val newsData: MutableLiveData<Response> = MutableLiveData()
 
