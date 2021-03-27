@@ -26,39 +26,37 @@ class RegistrationFragment : Fragment() {
 
         viewModel = ViewModelProvider(
             this,
-            RegistrationViewModelFactory(RegistrationRepo(LocalDataSource()))).get(RegistrationViewModel::class.java)
+            RegistrationViewModelFactory(RegistrationRepo(LocalDataSource()))
+        ).get(RegistrationViewModel::class.java)
         binding.btnsignin.setOnClickListener(View.OnClickListener {
             val myemail = binding.userName.text.toString()
             val mypassword = binding.userPass.text.toString()
 
             if (myemail.isNotEmpty()) {
-                if(mypassword.isNotEmpty()) {
-                    val isinserted = viewModel.insertUser(UserEntity(myemail, mypassword)) ?: false
-                    if (isinserted) {
-                        Toast.makeText(requireActivity(), "Inserted Correctly", Toast.LENGTH_SHORT)
-                            .show()
-                    } else {
-                        Toast.makeText(
-                            requireActivity(),
-                            "Inserted incorrectly",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
-                    }
-                }
-                else{
-                    Toast.makeText(requireActivity(), "Please Enter Password", Toast.LENGTH_SHORT).show()
-                }
-            }
-            else
-            {
+                if (isEmailValid(myemail)) {
+                    if (mypassword.isNotEmpty()) {
+                        val isinserted =
+                            viewModel.insertUser(UserEntity(myemail, mypassword)) ?: false
+                        if (isinserted) {
+                            Toast.makeText(requireActivity(), "Inserted Correctly", Toast.LENGTH_SHORT).show()
+                        }
+                        else
+                            Toast.makeText(requireActivity(), "Inserted incorrectly", Toast.LENGTH_SHORT).show()
+                    } else
+                        Toast.makeText(requireActivity(), "Please Enter Password", Toast.LENGTH_SHORT).show()
+                } else
+                    Toast.makeText(requireActivity(), "Please Enter Valid Email", Toast.LENGTH_SHORT).show()
+            } else
                 Toast.makeText(requireActivity(), "Please Enter Gmail", Toast.LENGTH_SHORT).show()
-            }
         })
-        return  binding.root
+        return binding.root
     }
 
     companion object {
-
+        @JvmStatic
+        val EMAIL_REGEX = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})";
+        fun isEmailValid(email: String): Boolean {
+            return EMAIL_REGEX.toRegex().matches(email);
+        }
     }
 }
