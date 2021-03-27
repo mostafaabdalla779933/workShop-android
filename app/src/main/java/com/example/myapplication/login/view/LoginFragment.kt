@@ -2,11 +2,14 @@ package com.example.myapplication.login.view
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.News.NewsFragment
 import com.example.myapplication.R
@@ -30,19 +33,16 @@ class LoginFragment : Fragment() {
 
         viewModel= ViewModelProvider(this, LoginViewModelFactory(LoginRepo(LocalDataSource()))).get(LoginViewModel::class.java)
 
+        viewModel.getEmails()
+
         binding.btnlogin.setOnClickListener(View.OnClickListener {
 
             if(viewModel.validateUser(binding.userName.text.toString(),binding.userPass.text.toString())){
-
-                Toast.makeText(requireContext(),"invaild password",Toast.LENGTH_SHORT)
-            }else{
-
-                Log.i(TAG, "onCreate: ")
-
                 parentFragmentManager.beginTransaction().replace(R.id.fragment_container_view,NewsFragment()).commit()
+            }else{
+                Log.i(TAG, "onCreate: ")
+                Toast.makeText(requireContext(),"invaild password",Toast.LENGTH_SHORT)
             }
-
-
         })
 
 
@@ -55,6 +55,20 @@ class LoginFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        viewModel.emailsLiveData.observe(viewLifecycleOwner, Observer {
+
+            var adapter1: ArrayAdapter<String> = ArrayAdapter<String>(
+                requireContext(),
+                android.R.layout.simple_dropdown_item_1line,it!!.toMutableList()
+            )
+            binding.userName.threshold=1
+            binding.userName.setAdapter(adapter1)
+        })
+
+
+
+
 
         return binding.root
     }

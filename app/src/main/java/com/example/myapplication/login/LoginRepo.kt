@@ -10,6 +10,10 @@ class LoginRepo(var localDataSourceInterface: LocalDataSourceInterface) : LoginR
       return  localDataSourceInterface.validateUser(userName,pass)
     }
 
+    override suspend fun getEmails(): List<String>? {
+
+        return localDataSourceInterface.getEmails()
+    }
 
 
 }

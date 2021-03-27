@@ -8,8 +8,8 @@ import androidx.room.Query
 
     @Dao
     interface DAO {
-        @Query("SELECT * FROM Users ")
-        fun getAllUsers(): List<UserEntity>?
+        @Query("SELECT Email FROM Users ")
+        fun getAllUsers(): List<String>?
 
         @Insert
         fun insertUser(userEntity: UserEntity?):Long

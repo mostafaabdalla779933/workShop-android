@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.example.myapplication.News.NewsFragment
 import com.example.myapplication.R
 import com.example.myapplication.Registration.RegistrationRepo
 import com.example.myapplication.Registration.viewmodel.RegistrationViewModel
@@ -40,10 +41,13 @@ class RegistrationFragment : Fragment() {
                 if (isinserted) {
                     Toast.makeText(requireActivity(), "Inserted Correctly", Toast.LENGTH_SHORT)
                         .show()
+                    parentFragmentManager.beginTransaction().replace(R.id.fragment_container_view,
+                        NewsFragment()
+                    ).commit()
                 }
                 else{
-                    Toast.makeText(requireActivity(), "Inserted incorrectly", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(requireActivity(), "Inserted incorrectly", Toast.LENGTH_SHORT).show()
+
                 }
             }
 
