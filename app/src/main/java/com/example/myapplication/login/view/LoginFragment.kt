@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -37,12 +36,28 @@ class LoginFragment : Fragment() {
 
         binding.btnlogin.setOnClickListener(View.OnClickListener {
 
-            if(viewModel.validateUser(binding.userName.text.toString(),binding.userPass.text.toString())){
-                parentFragmentManager.beginTransaction().replace(R.id.fragment_container_view,NewsFragment()).commit()
-            }else{
-                Log.i(TAG, "onCreate: ")
-                Toast.makeText(requireContext(),"invaild password",Toast.LENGTH_SHORT)
+            val username:String?=binding.userName.text.toString()
+            val password:String?=binding.userPass.text.toString()
+            if(username.isNullOrEmpty()){
+                Toast.makeText(requireActivity(),"PLease fill Username Field",Toast.LENGTH_SHORT).show()
             }
+            else{
+                if (password.isNullOrEmpty()){
+                    Toast.makeText(requireActivity(),"PLease fill Password Field",Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    if(viewModel.validateUser(username,password)){
+
+                        Toast.makeText(requireActivity(),"Login Successeded",Toast.LENGTH_SHORT).show()
+                        parentFragmentManager.beginTransaction().replace(R.id.fragment_container_view,NewsFragment()).commit()
+                    }else{
+                        Toast.makeText(requireActivity(),"Invalid Username/Password",Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+
+
         })
 
 
