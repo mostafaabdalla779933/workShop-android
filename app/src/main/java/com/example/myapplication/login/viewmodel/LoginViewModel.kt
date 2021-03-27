@@ -7,10 +7,10 @@ class LoginViewModel(val loginRepo: LoginRepo):ViewModel() {
 
 
 
-    fun validateUser(user:String,pass:String){
+    fun validateUser(user:String,pass:String):Boolean{
 
 
-
+       return loginRepo.validateUser(user,pass)
 
     }
 
