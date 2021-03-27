@@ -7,8 +7,8 @@ import com.example.myapplication.login.LoginRepo
 
 class RegistrationViewModel(val registrationRepo: RegistrationRepo): ViewModel() {
 
-    fun insertUser(user: UserEntity){
-        registrationRepo.insertUser(user)
+    fun insertUser(user: UserEntity):Boolean?{
+       return registrationRepo.insertUser(user)
     }
 
 }

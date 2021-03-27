@@ -8,7 +8,9 @@ class LocalDataSource :
     LocalDataSourceInterface {
     val userDao= RoomAppDb.getAppDatabase(MyApplication.getContext())?.DAO()
 
-    override fun insertUser(user: UserEntity) {
-        userDao?.insertUser(user)
+    override fun insertUser(user: UserEntity):Boolean? {
+       return userDao?.insertUser(user)?.let {
+           it>0
+       }
     }
 }

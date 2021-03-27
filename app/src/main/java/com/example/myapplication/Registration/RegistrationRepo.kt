@@ -4,8 +4,8 @@ import com.example.myapplication.db.UserEntity
 
 class RegistrationRepo(var localDataSourceInterface: LocalDataSourceInterface){
 
-    fun insertUser(user: UserEntity){
-        localDataSourceInterface.insertUser(user)
+    fun insertUser(user: UserEntity):Boolean?{
+        return localDataSourceInterface.insertUser(user)
     }
 
 

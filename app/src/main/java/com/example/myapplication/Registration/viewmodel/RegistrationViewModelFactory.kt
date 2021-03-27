@@ -3,7 +3,6 @@ package com.example.myapplication.Registration.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.Registration.RegistrationRepo
-import com.example.myapplication.login.LoginRepo
 import com.example.myapplication.login.viewmodel.LoginViewModel
 
 class RegistrationViewModelFactory(val registrationRepo: RegistrationRepo) : ViewModelProvider.Factory{
@@ -11,6 +10,6 @@ class RegistrationViewModelFactory(val registrationRepo: RegistrationRepo) : Vie
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 
-        return LoginViewModel(registrationRepo) as T
+        return RegistrationViewModel(registrationRepo) as T
     }
 }

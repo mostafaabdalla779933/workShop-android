@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
+import com.example.myapplication.Registration.view.RegistrationFragment
 import com.example.myapplication.databinding.FragmentLoginBinding
 import com.example.myapplication.login.LocalDataSource
 import com.example.myapplication.login.LoginRepo
@@ -43,9 +44,7 @@ class LoginFragment : Fragment() {
 
         binding.btnsignin.setOnClickListener(View.OnClickListener {
 
-
-
-            parentFragmentManager.beginTransaction().replace(R.id.fragment_container_view,LoginFragment()).commit()
+            parentFragmentManager.beginTransaction().replace(R.id.fragment_container_view,RegistrationFragment()).commit()
 
         })
 
